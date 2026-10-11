@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>To-Do List</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'tasks/site.css' %}" />
+    </head>
+    <body>
+        <div class="message">Hello! Welcome to your To-Do List.<br>It's currently {{ date | date:'l, d F, Y' }} at {{ date | time:'H:i:s' }}. </div>
+        <div class="container">
+            <h1>To-Do List</h1>
+            <!-- CREATE TASK -->
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="title" placeholder="Task Title" required>
+                    <textarea name="description" placeholder="Task Description"></textarea>
+                    <button type="submit" name="add_task">Add Task</button>
+                </div>
+            </form>
+            <!-- LIST OF TASKS -->
+             {% for task in tasks %}
+             <div class="task">
+                    <div id="text-{{ task.id }}" class="task-text">
+                        <h3>{{ task.title }}</h3>
+                        <p>{{ task.description|default:"No description provided." }}</p>
+                    </div>                
+                    <form method="POST"
+                      id="edit-{{ task.id }}"
+                      class="edit-form"
+                      style="display: none;">
+                        {% csrf_token %}
+                        <input type="hidden" name="task_id" value="{{ task.id }}">
+                        <input type="text" name="title" value="{{ task.title }}" required>
+                        <textarea name="description" placeholder="Task Description">{{ task.description }}</textarea>
+                        <button type="submit" name="edit_task" class="btn btn-save">Save</button>
+                    </form>
+
+                <div class="btn-group">
+                    <button type="button" onclick="enableEdit({{ task.id }})" class="btn btn-edit">Edit</button>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="task_id" value="{{ task.id }}">
+                    <button type="submit" name="delete_task" class="btn btn-delete">Delete</button>
+                </form>
+             </div>
+            {% empty %}
+        <p>No tasks yet</p>
+        {% endfor %}
+
+        <div class="footer">
+            <span>You have {{ task_count }} task{{ task_count|pluralize }}</span>
+
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit"
+                        name="clear_all"
+                        class="clear-btn">
+                    Clear All
+                </button>
+            </form>
+        </div>
+        <script>
+            function enableEdit(id) {
+                document.getElementById("text-" + id).style.display = "none";
+                document.getElementById("edit-" + id).style.display = "flex";
+            }
+        </script>
+    </body>
+</html>

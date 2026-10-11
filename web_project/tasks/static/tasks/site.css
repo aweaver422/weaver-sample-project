@@ -1,0 +1,267 @@
+/* GENERAL PAGE STYLING */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px 20px;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: url("../images/bg.png") no-repeat center center / cover fixed;
+    position: relative;
+    color: #29263a;
+}
+
+/* DARK OVERLAY OVER BACKGROUND */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(25, 22, 45, 0.3);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* WELCOME MESSAGE */
+.message {
+    max-width: 650px;
+    margin: 0 auto 25px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #574bce;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.6;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* MAIN TO-DO CONTAINER */
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 35px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* PAGE TITLE */
+h1 {
+    margin: 0 0 28px;
+    color: #29263a;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* ADD TASK FORM */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+/* TITLE INPUT AND DESCRIPTION TEXTAREAS */
+.input-group input,
+.input-group textarea,
+.edit-form input[type="text"],
+.edit-form textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #dedbea;
+    border-radius: 10px;
+    background: #faf9ff;
+    color: #29263a;
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group textarea,
+.edit-form textarea {
+    min-height: 85px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.edit-form input[type="text"]:focus,
+.edit-form textarea:focus {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.13);
+}
+
+/* BUTTONS */
+button {
+    font-family: inherit;
+}
+
+.input-group button {
+    align-self: flex-end;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 10px;
+    background: #6c5ce7;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.input-group button:hover {
+    background: #574bce;
+    transform: translateY(-1px);
+}
+
+/* TASK CARD */
+.task {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 18px;
+    border: 1px solid #eeecf5;
+    border-radius: 14px;
+    background: #f8f7fc;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task:hover {
+    background: #f1effb;
+    box-shadow: 0 4px 12px rgba(60, 45, 120, 0.07);
+}
+
+/* TASK TITLE AND DESCRIPTION */
+.task-text {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.task-text h3 {
+    margin: 0 0 7px;
+    color: #332b65;
+    font-size: 17px;
+    font-weight: 650;
+}
+
+.task-text p {
+    margin: 0;
+    color: #777386;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+.task-text p:empty {
+    display: none;
+}
+
+/* EDIT FORM */
+.edit-form {
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-form input[type="text"],
+.edit-form textarea {
+    background: white;
+}
+
+/* TASK ACTION BUTTONS */
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.btn {
+    flex-shrink: 0;
+    padding: 9px 13px;
+    border: none;
+    border-radius: 9px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover,
+.clear-btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-edit {
+    background: #e99a21;
+}
+
+.btn-edit:hover {
+    background: #ca8010;
+}
+
+.btn-save {
+    align-self: flex-start;
+    background: #28a96b;
+}
+
+.btn-save:hover {
+    background: #208858;
+}
+
+.btn-delete {
+    background: #e65b62;
+}
+
+.btn-delete:hover {
+    background: #cc4149;
+}
+
+/* EMPTY TASK MESSAGE */
+.container > p {
+    padding: 20px 0;
+    color: #858095;
+    text-align: center;
+}
+
+/* FOOTER */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eeecf5;
+    color: #625d73;
+    font-size: 14px;
+}
+
+/* CLEAR ALL BUTTON */
+.clear-btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #6c5ce7;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.clear-btn:hover {
+    background: #574bce;
+}
