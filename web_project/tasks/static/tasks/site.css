@@ -66,10 +66,12 @@ h1 {
     margin-bottom: 28px;
 }
 
-/* TITLE INPUT AND DESCRIPTION TEXTAREAS */
+/* TITLE INPUT AND DESCRIPTION TEXT AREAS */
 .input-group input,
+.input-group input[type="date"],
 .input-group textarea,
 .edit-form input[type="text"],
+.edit-form input[type="date"],
 .edit-form textarea {
     width: 100%;
     min-width: 0;
@@ -92,8 +94,10 @@ h1 {
 }
 
 .input-group input:focus,
+.input-group input[type="date"]:focus,
 .input-group textarea:focus,
 .edit-form input[type="text"]:focus,
+.edit-form input[type="date"]:focus,
 .edit-form textarea:focus {
     border-color: #6c5ce7;
     box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.13);
@@ -264,4 +268,23 @@ button {
 
 .clear-btn:hover {
     background: #574bce;
+}
+
+/* OVERDUE TASKS */
+.task.overdue {
+    border-color: #e65b62;
+    background: #fff0f1;
+}
+
+.task.overdue h3 {
+    color: #e65b62;
+}
+
+.task-text .due-date {
+    display: block;
+    width: auto;
+    text-align: left;
+    margin: 8px 0;
+    color: #777;
+    white-space: normal;
 }

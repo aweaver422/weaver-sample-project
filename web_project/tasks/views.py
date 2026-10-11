@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Task
+from datetime import date
 
 #def home(request):
  #   return HttpResponse("Hello, Django!")
@@ -12,9 +13,10 @@ def tasks(request):
 
         if "add_task" in request.POST:
             title = request.POST.get("title")
+            due_date = request.POST.get("due_date")
             description = request.POST.get("description")
             completed = request.POST.get("completed") == "on"
-            task = Task(title=title, description=description, completed=completed)
+            task = Task(title=title, due_date=due_date, description=description, completed=completed)
             task.save()
 
         if "edit_task" in request.POST:
@@ -23,6 +25,7 @@ def tasks(request):
 
             if task:
                 task.title = request.POST.get("title")
+                task.due_date = request.POST.get("due_date")
                 task.description = request.POST.get("description")
                 task.completed = request.POST.get("completed") == "on"
                 task.save()
@@ -38,6 +41,11 @@ def tasks(request):
             Task.objects.all().delete()
 
     tasks = Task.objects.all()
+
+    for task in tasks:
+        task.is_overdue= (
+            task.due_date is not None and task.due_date.date() < timezone.localdate() and not task.completed
+        )
 
     return render(request, "tasks/tasks.html", {
         "date": timezone.now(),

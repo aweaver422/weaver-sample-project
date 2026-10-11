@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'tasks/site.css' %}" />
     </head>
     <body>
-        <div class="message">Hello! Welcome to your To-Do List.<br>It's currently {{ date | date:'l, d F, Y' }} at {{ date | time:'H:i:s' }}. </div>
+        <div class="message">Hello! Welcome to your To-Do List.<br>It's currently {{ date | date:'l, F d, Y' }} at {{ date | time:'H:i' }}. </div>
         <div class="container">
             <h1>To-Do List</h1>
             <!-- CREATE TASK -->
@@ -15,16 +15,28 @@
                 {% csrf_token %}
                 <div class="input-group">
                     <input type="text" name="title" placeholder="Task Title" required>
+                    <input type="date" name="due_date" placeholder="Due Date">
                     <textarea name="description" placeholder="Task Description"></textarea>
                     <button type="submit" name="add_task">Add Task</button>
                 </div>
             </form>
             <!-- LIST OF TASKS -->
              {% for task in tasks %}
-             <div class="task">
+             <div class="task {% if task.is_overdue %}overdue{% endif %}">
                     <div id="text-{{ task.id }}" class="task-text">
                         <h3>{{ task.title }}</h3>
+                        <p class="due-date">
+                            Due:
+                            {% if task.due_date %}
+                                {{ task.due_date|date:"M d, Y" }}
+                            {% else %}
+                                No due date
+                            {% endif %}
+                        </p>
                         <p>{{ task.description|default:"No description provided." }}</p>
+                        {% if task.is_overdue %}
+                            <p class="overdue">THIS TASK IS OVERDUE!</p>
+                        {% endif %}
                     </div>                
                     <form method="POST"
                       id="edit-{{ task.id }}"
@@ -33,6 +45,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="task_id" value="{{ task.id }}">
                         <input type="text" name="title" value="{{ task.title }}" required>
+                        <input type="date" name="due_date" value="{{ task.due_date|date:'Y-m-d' }}">
                         <textarea name="description" placeholder="Task Description">{{ task.description }}</textarea>
                         <button type="submit" name="edit_task" class="btn btn-save">Save</button>
                     </form>
