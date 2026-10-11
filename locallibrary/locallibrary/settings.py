@@ -39,7 +39,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-&psk#na5l=p3q8
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['aweaver.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = [
+                'aweaver422.pythonanywhere.com', 
+                '127.0.0.1'
+                ]
 
 ## For example, for a site URL is at 'web-production-3640.up.railway.app'
 ## (replace the string below with your own site URL):
