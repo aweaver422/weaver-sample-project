@@ -8,3 +8,12 @@ After setting up the environment and playing around with it, my next step was to
 To get into the more complex stuff, I decided to start follow [VSCode's tutorial](https://code.visualstudio.com/docs/python/tutorial-django) for Django, which I followed up until the "Use the collectstatic command" section. I didn't continue because I felt as if I wasn't getting a full taste for of the framework, so I switched to working on the provided [Mozilla tutorial](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django), which I also ended up stopping around the deployment section due to complications. For some reason, I couldn't figure out what issue I was having with pythonanywhere and getting my repository to connect and display.
 
 Moving on, I decided to take the files I was working on for VSCode's tutorial and overwrite them to become my app deliverable. My main idea was to make a simple to-do list app, where the user could input and delete tasks as they complete them. I started off with another [Geeks For Geeks tutorial](https://www.geeksforgeeks.org/python/python-todo-webapp-using-django/), but ended up adding a description feature and a date feature, where overdue tasks turn red. I also included a welcome message with the date and time at the top of the page. After trying all of these tutorials, the final app was a little less daunting of a task to do, and made more sense as I went through the steps and added my own code to it. Starting out with the Mozilla tutorial was confusing at first, but in the end it did help me to see the process of using Django and what exactly I needed to do for my own application.
+
+---
+
+- locallibrary is for the Mozilla tutorial  
+- web_project is for the app deliverable, originally created for the VSCode tutorial  
+- calc-tutorial.py is for the Geeks for Geeks calculator tutorial  
+- test.py was used for the VSCode tutorial
+  
+I left all of the above files to show exactly what I went through while researching, if you want to view the code specifically for the app I built visit [here](https://github.com/aweaver422/weaver-sample-project/tree/main/web_project).
